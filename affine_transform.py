@@ -36,13 +36,13 @@ class Affine():
         t = 20 * np.random.rand(2, 1) - 10
 
         # Set the number of points in test case
-        num = 10
+        num = 1000
 
         # Compute the number of outliers and inliers respectively
         outliers = int(np.round(num * outlier_rate))
         inliers = int(num - outliers)
 
-        # Gernerate source points whose scope from (0,0) to (100,100)
+        # Gernerate source points whose scope from (0,0) to (100, 100)
         pts_s = 100 * np.random.rand(2, num)
         # Initialize warped points matrix
         pts_t = np.zeros((2, num))
@@ -51,7 +51,7 @@ class Affine():
         pts_t[:, :inliers] = np.dot(A, pts_s[:, :inliers]) + t
 
         # Generate outliers in warped points matrix
-        pts_t[:, inliers:] = 200 * np.random.rand(2, outliers) - 100
+        pts_t[:, inliers:] = 100 * np.random.rand(2, outliers)
 
         # Reset the order of warped points matrix,
         # outliers and inliers will scatter randomly in test case
@@ -124,11 +124,17 @@ class Affine():
         # b contains all known target points
         b = pts_t.T.reshape((6, 1))
 
-        # Solve the linear equation
-        theta = np.linalg.solve(M, b)
+        try:
+            # Solve the linear equation
+            theta = np.linalg.solve(M, b)
 
-        # Form the affine transformation
-        A = theta[:4].reshape((2, 2))
-        t = theta[4:]
+            # Form the affine transformation
+            A = theta[:4].reshape((2, 2))
+            t = theta[4:]
+        except np.linalg.linalg.LinAlgError:
+            # If M is singular matrix, return None
+            # print("Singular matrix.")
+            A = None
+            t = None
 
         return A, t
