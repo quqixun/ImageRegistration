@@ -122,11 +122,11 @@ class Affine():
 
         # Form the matrix b,
         # b contains all known target points
-        b = pts_t.T.reshape((6, 1))
+        b = pts_t.T.reshape((2 * pts_num, 1))
 
         try:
             # Solve the linear equation
-            theta = np.linalg.solve(M, b)
+            theta = np.linalg.lstsq(M, b)[0]
 
             # Form the affine transformation
             A = theta[:4].reshape((2, 2))

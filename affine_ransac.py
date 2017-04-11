@@ -34,7 +34,7 @@ class Ransac():
         t = None
         inliers = None
 
-        for i in range(10000):
+        for i in range(2000):
             idx = np.random.randint(0, pts_s.shape[1], (self.K, 1))
             A_tmp, t_tmp = af.estimate_affine(pts_s[:, idx], pts_t[:, idx])
             residual = self.residual_lengths(A_tmp, t_tmp, pts_s, pts_t)
