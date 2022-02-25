@@ -118,7 +118,7 @@ class Affine():
             # Form the matrix m
             temp = [[pts_s[0, i], pts_s[1, i], 0, 0, 1, 0],
                     [0, 0, pts_s[0, i], pts_s[1, i], 0, 1]]
-            M[2 * i: 2 * i + 2, :] = np.array(temp)
+            M[2 * i: 2 * i + 2, :] = np.array(temp, dtype=object)
 
         # Form the matrix b,
         # b contains all known target points
@@ -126,7 +126,7 @@ class Affine():
 
         try:
             # Solve the linear equation
-            theta = np.linalg.lstsq(M, b)[0]
+            theta = np.linalg.lstsq(M, b, rcond=None)[0]
 
             # Form the affine transformation
             A = theta[:4].reshape((2, 2))

@@ -82,7 +82,7 @@ class Align():
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         # Extract key points and SIFT descriptors
-        sift = cv2.xfeatures2d.SIFT_create()
+        sift = cv2.SIFT_create()
         kp, desc = sift.detectAndCompute(img_gray, None)
 
         # Extract positions of key points
