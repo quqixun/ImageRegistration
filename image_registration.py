@@ -61,10 +61,10 @@ print(A_rsc, '\n', t_rsc)
 
 # Load source image and target image
 # source_path = 'Images/mona_source.png'
-source_path = 'Images/10334_img2_all.png'
+source_path = '10334_img2_all.png'
 
 # target_path = 'Images/mona_target.jpg'
-target_path = 'Images/10334_img1.png'
+target_path = '10334_img1.png'
 
 time_start = time.time()
 
