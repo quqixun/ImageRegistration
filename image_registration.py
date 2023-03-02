@@ -2,9 +2,10 @@
 # quqixun@gmail.com
 # 2017/04/10
 #
-
+import time
 
 import numpy as np
+import cv2
 from affine_ransac import Ransac
 from align_transform import Align
 from affine_transform import Affine
@@ -59,11 +60,22 @@ print(A_rsc, '\n', t_rsc)
 # -------------------------------------------------------------
 
 # Load source image and target image
-source_path = 'Images/mona_source.png'
-target_path = 'Images/mona_target.jpg'
+# source_path = 'Images/mona_source.png'
+source_path = 'Images/10334_img2_all.png'
+
+# target_path = 'Images/mona_target.jpg'
+target_path = 'Images/10334_img1.png'
+
+time_start = time.time()
 
 # Create instance
 al = Align(source_path, target_path, threshold=1)
 
 # Image transformation
-al.align_image()
+m_img = al.align_image()
+time_end = time.time()
+print('time cost', time_end - time_start, 's')
+
+cv2.imwrite("img2_reg.png", m_img)
+
+print(1)

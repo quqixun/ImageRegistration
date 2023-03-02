@@ -80,6 +80,8 @@ class Align():
 
         # Convert the image to grayscale
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # img_gray = img
+
 
         # Extract key points and SIFT descriptors
         sift = cv2.SIFT_create()
@@ -182,14 +184,14 @@ class Align():
         warp = cv2.warpAffine(source, M, (cols, rows))
 
         # Merge warped image with target image to display
-        merge = np.uint8(target * 0.5 + warp * 0.5)
+        # merge = np.uint8(target * 0.5 + warp * 0.5)
 
         # Show the result
-        cv2.imshow('img', merge)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        # cv2.imshow('img', merge)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
 
-        return
+        return warp
 
     def align_image(self):
         ''' ALIGN_IMAGE
@@ -216,6 +218,6 @@ class Align():
         M = self.affine_matrix(kp_s, kp_t, fit_pos)
 
         # Warp the source image and display result
-        self.warp_image(img_source, img_target, M)
+        merge_img = self.warp_image(img_source, img_target, M)
 
-        return
+        return merge_img
