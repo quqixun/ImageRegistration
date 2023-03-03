@@ -61,7 +61,8 @@ print(A_rsc, '\n', t_rsc)
 
 # Load source image and target image
 # /content/drive/Othercomputers/惠普暗影精灵/华理(new)/组会实验/scalarFlow_dataset/raymarching/big_dataset/test/data/10001_img1.png
-path = '/content/drive/Othercomputers/惠普暗影精灵/华理(new)/组会实验/scalarFlow_dataset/raymarching/big_dataset/test/data/'
+# path = '/content/drive/Othercomputers/惠普暗影精灵/华理(new)/组会实验/scalarFlow_dataset/raymarching/big_dataset/test/data/'
+path = 'D:/google downloads/experiment/image_registration_test/test/data/'
 img_num = 10001
 total_time_start = time.time()
 
