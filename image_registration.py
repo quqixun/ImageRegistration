@@ -60,20 +60,21 @@ print(A_rsc, '\n', t_rsc)
 # -------------------------------------------------------------
 
 # Load source image and target image
-
-path = ''
+# /content/drive/Othercomputers/惠普暗影精灵/华理(new)/组会实验/scalarFlow_dataset/raymarching/big_dataset/test/data/10001_img1.png
+path = '/content/drive/Othercomputers/惠普暗影精灵/华理(new)/组会实验/scalarFlow_dataset/raymarching/big_dataset/test/data/'
 img_num = 10001
-time_start = time.time()
-for  i in range(500):
+total_time_start = time.time()
+
+for i in range(500):
     # source_path = 'Images/mona_source.png'
-    source_path = path + '{}_img2_all.png'.formart(img_num + i)
+    source_path = '{}_img2_all.png'.format(img_num + i)
     # target_path = 'Images/mona_target.jpg'
-    target_path = path + '{}_img1.png'formart(img_num + i)
+    target_path = '{}_img1.png'.format(img_num + i)
 
     time_start = time.time()
 
     # Create instance
-    al = Align(source_path, target_path, threshold=1)
+    al = Align(path+source_path, path+target_path, threshold=1)
 
     # Image transformation
     m_img = al.align_image()
@@ -81,5 +82,6 @@ for  i in range(500):
     print('time cost', time_end - time_start, 's')
 
     # cv2.imwrite("img2_reg.png", m_img)
-
+total_time_end = time.time()
+print('total time cost', total_time_end - total_time_start, 's')
 # print(1)
