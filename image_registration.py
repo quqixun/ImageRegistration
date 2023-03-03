@@ -60,22 +60,26 @@ print(A_rsc, '\n', t_rsc)
 # -------------------------------------------------------------
 
 # Load source image and target image
-# source_path = 'Images/mona_source.png'
-source_path = '10334_img2_all.png'
 
-# target_path = 'Images/mona_target.jpg'
-target_path = '10334_img1.png'
-
+path = ''
+img_num = 10001
 time_start = time.time()
+for  i in range(500):
+    # source_path = 'Images/mona_source.png'
+    source_path = path + '{}_img2_all.png'.formart(img_num + i)
+    # target_path = 'Images/mona_target.jpg'
+    target_path = path + '{}_img1.png'formart(img_num + i)
 
-# Create instance
-al = Align(source_path, target_path, threshold=1)
+    time_start = time.time()
 
-# Image transformation
-m_img = al.align_image()
-time_end = time.time()
-print('time cost', time_end - time_start, 's')
+    # Create instance
+    al = Align(source_path, target_path, threshold=1)
 
-cv2.imwrite("img2_reg.png", m_img)
+    # Image transformation
+    m_img = al.align_image()
+    time_end = time.time()
+    print('time cost', time_end - time_start, 's')
 
-print(1)
+    # cv2.imwrite("img2_reg.png", m_img)
+
+# print(1)
